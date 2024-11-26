@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryPromptAPI", "StoryPromptAPI.csproj", "{A684DE94-77A7-4953-9D0F-A2E2C7D73115}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A684DE94-77A7-4953-9D0F-A2E2C7D73115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A684DE94-77A7-4953-9D0F-A2E2C7D73115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A684DE94-77A7-4953-9D0F-A2E2C7D73115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A684DE94-77A7-4953-9D0F-A2E2C7D73115}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4779599A-15B8-42D8-8D28-076CEC8BDEFC}
+	EndGlobalSection
+EndGlobal
