@@ -1,10 +1,10 @@
-name: Build and deploy .NET Core application to Web App StoryPromptAPICool
+name: Build and deploy .NET Core application to Web App StoryPromptAPI20241127061819
 on:
   push:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: StoryPromptAPICool
+  AZURE_WEBAPP_NAME: StoryPromptAPI20241127061819
   AZURE_WEBAPP_PACKAGE_PATH: .\publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
@@ -44,5 +44,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.StoryPromptAPICool_EF24 }}
+        publish-profile: ${{ secrets.StoryPromptAPI20241127061819_AEAA }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
