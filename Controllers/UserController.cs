@@ -23,6 +23,7 @@ namespace StoryPromptAPI.Controllers
             return Ok(users);
         }
 
+
         // GET: api/user/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(string id)

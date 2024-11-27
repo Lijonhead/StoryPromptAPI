@@ -45,19 +45,36 @@ namespace StoryPromptAPI.Services
 
         public async Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
-            var users = await _userRepository.GetAllUsersAsync();
-            var userDTOs = new List<UserDTO>();
+            //var users = await _userRepository.GetAllUsersAsync();
+            //var userDTOs = new List<UserDTO>();
+            //foreach (var user in users)
+            //{
+            //    userDTOs.Add(new UserDTO
+            //    {
+            //        Id = user.Id,
+            //        UserName = user.UserName,
+            //        Email = user.Email,
+
+            //    });
+            //}
+
+            //return userDTOs;
+            var users = _userManager.Users.ToList();
+            var userDtos = new List<UserDTO>();
+
             foreach (var user in users)
             {
-                userDTOs.Add(new UserDTO
+                var roles = await _userManager.GetRolesAsync(user);
+                userDtos.Add(new UserDTO
                 {
                     Id = user.Id,
                     UserName = user.UserName,
-                    Email = user.Email
+                    Email = user.Email,
+                    Roles = roles
                 });
             }
 
-            return userDTOs;
+            return userDtos;
         }
 
         public async Task<UserDTO> GetUserByIdAsync(string id)

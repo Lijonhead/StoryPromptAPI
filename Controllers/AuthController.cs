@@ -12,6 +12,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using StoryPromptAPI.Data.Repository;
 using StoryPromptAPI.Data.Repository.IRepository;
+using Microsoft.AspNetCore.Rewrite;
+using StoryPromptAPI.Models.DTOs.User;
+using System.Data;
 
 namespace StoryPromptAPI.Controllers
 {
@@ -33,6 +36,7 @@ namespace StoryPromptAPI.Controllers
             _profileRepository = profileRepository;
 
         }
+
 
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
@@ -59,8 +63,31 @@ namespace StoryPromptAPI.Controllers
             };
             await _profileRepository.AddProfileAsync(profile);
             await _userManager.AddToRoleAsync(user, "User");
+            
 
             return Ok("User registered successfully");
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            var roles = await _userManager.GetRolesAsync(user); // Fetch roles
+
+            var userDetails = new UserDTO
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                Roles = roles.ToList() // Add roles to the response
+            };
+            Console.WriteLine(userDetails.Roles);
+
+            return Ok(userDetails);
         }
 
         [HttpPost("login")]
@@ -122,7 +149,8 @@ namespace StoryPromptAPI.Controllers
             {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id), // "sub" for subject/user ID
             new Claim(JwtRegisteredClaimNames.Email, user.Email), // "email" for email address
-            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName) // "unique_name" for username
+            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName), // "unique_name" for username
+            
             };
 
             // Add roles as claims
